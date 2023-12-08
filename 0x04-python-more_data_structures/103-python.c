@@ -3,7 +3,7 @@
 #include <listobject.h>
 #include <bytesobject.h>
 
-void print_python_bytes(PyObject *p)
+ print_python_bytes(PyObject *p)
 {
 	long int size;
 	int i;
