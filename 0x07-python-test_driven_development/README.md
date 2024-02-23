@@ -1,35 +1,55 @@
-#	Test Driven Development (doctest and unittests)
+# 0x07. Python - Test-driven development
 
-# Requirements
-- ```#!/usr/bin/python3``` at the top of scripts to run them as executable files
-- doctest  and unittest modules
+## Description
+What you should learn from this project:
+
+* Why Python programming is awesome (don’t forget to tweet today, with the hashtag #pythoniscool :))
+* What’s an interactive test
+* Why tests are important
+* How to write Docstrings to create tests
+* How to write documentation for each module and function
+* What are the basic option flags to create tests
+* How to find edge cases
+
+---
+
+### [0. Integers addition](./0-add_integer.py)
+* Write a function that adds 2 integers.
 
 
-## Example:
-```
-taiwop@Taiwo-avantgarde$ cat example_ezrapound.txt | tail -20
->>> text = "And New York is the most beautiful city in the world? \
-... It is not far from it. No urban night is like the night there. \
-... .. Squares after squares of flame, set up and cut into the aether. Here is our poetry: \
-... For we have pulled down the stars to our will."
->>> text_indentation(text) #doctest: +REPORT_NDIFF, +NORMALIZE_WHITESPACE
-And New York is the most beautiful city in the world?
-<BLANKLINE>
-It is not far from it.
-<BLANKLINE>
-No urban night is like the night there.
-<BLANKLINE>
-.
-<BLANKLINE>
-.
-<BLANKLINE>
-Squares after squares of flame, set up and cut into the aether.
-<BLANKLINE>
-Here is our poetry:
-<BLANKLINE>
-For we have pulled down the stars to our will.
-<BLANKLINE>
-taiwop@Taiwo-avantgarde$ python3 -m doctest -v tests/example_ezrapound.txt | tail -2
-12 passed and 0 failed.
-Test passed.
-```
+### [1. Divide a matrix](./2-matrix_divided.py)
+* Write a function that divides all elements of a matrix.
+
+
+### [2. Say my name](./3-say_my_name.py)
+* Write a function that prints My name is <first name> <last name>
+
+
+### [3. Print square](./4-print_square.py)
+* Write a function that prints a square with the character #.
+
+
+### [4. Text indentation](./5-text_indentation.py)
+* Write a function that prints a text with 2 new lines after each of these characters: ., ? and :
+
+
+### [5. Max integer - Unittest](./tests/6-max_integer_test.py)
+* Since the beginning you have been creating “Interactive tests”. For this exercise, you will add Unittests.
+
+
+### [6. Matrix multiplication](./100-matrix_mul.py)
+* Write a function that multiplies 2 matrices:
+
+
+### [7. Lazy matrix multiplication](./101-lazy_matrix_mul.py)
+* Write a function that multiplies 2 matrices by using the module NumPy
+
+
+### [8. CPython #3: Python Strings](./102-python.c)
+* 
+
+
+---
+
+## Author
+* **Wolf Hopkins** - [Zevrov](https://github.com/Zevrov)

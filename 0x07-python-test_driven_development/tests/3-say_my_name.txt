@@ -1,72 +1,27 @@
-=================================
-Test for module 3-say_my_name.py
-=================================
+>>> say_my_name = __import__('3-say_my_name').say_my_name
 
-This tests only one function: ``say_my_name(first_name, last_name="")``.
+>>> say_my_name()
+Traceback (most recent call last):
+TypeError: say_my_name() missing 1 required positional argument: 'first_name'
 
-first name
-==========
-	None value
-	------------
-::
-	>>> say_my_name = __import__('3-say_my_name').say_my_name
-	>>> say_my_name(None, "Peter")
-	Traceback (most recent call last):
-	    ...
-	TypeError: first_name must be a string
+>>> say_my_name("A", "B", "C")
+Traceback (most recent call last):
+TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
 
+>>> say_my_name(42)
+Traceback (most recent call last):
+TypeError: first_name must be a string
 
-::
-	integer value
-	-------------
-	>>> say_my_name(25, "Peter")
-	Traceback (most recent call last):
-	    ...
-	TypeError: first_name must be a string
-	
-	
-	Ideal value (str) with last_name default
-	----------------------------------------
-	>>> say_my_name("Taiwo")
-	My name is Taiwo 
+>>> say_my_name(42, "Hamilton")
+Traceback (most recent call last):
+TypeError: first_name must be a string
 
+>>> say_my_name("Alex", 42)
+Traceback (most recent call last):
+TypeError: last_name must be a string
 
-	Ideal value with last_name input
-	----------------------------------
-	>>> say_my_name("Taiwo", 'Peter')
-	My name is Taiwo Peter
+>>> say_my_name("Alex", "Hamilton")
+My name is Alex Hamilton
 
-
-
-
-last_name
-=========
-::
-	last name omitted
-	----------------------
-	>>> say_my_name("Taiwo")
-	My name is Taiwo 
-
-
-	None
-	-----
-	>>> say_my_name("Taiwo", None)
-	Traceback (most recent call last):
-	    ...
-	TypeError: last_name must be a string
-
-
-	integer value
-	--------------
-	>>> say_my_name("Taiwo", -98)
-	Traceback (most recent call last):
-	    ...
-	TypeError: last_name must be a string
-
-
-
-Ideal cases
-============
-::
-	>>> say_my_name(" Taiwo ", 'Peter   123  ')
-	My name is  Taiwo  Peter   123  
+>>> say_my_name("Alex")
+My name is Alex 
