@@ -1,18 +1,36 @@
 #!/usr/bin/python3
-"""Lists states"""
 
-import MySQLdb
-from sys import argv
+"""
+Lists all cities from the cities table of database hbtn_0e_0_usa.
+Usage: ./0-select_states.py <username> \
+                            <password> \
+                            <database-name>
+"""
+import sys
+import MySQLdb as db
+
+
+def connect_and_query() -> None:
+
+    """Connect to the database and execute query"""
+    try:
+        cnx = db.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+        cursor = cnx.cursor(cursorclass=db.cursors.Cursor)
+        cursor.execute('SELECT city.id, city.name, state.name\
+                        FROM cities as city\
+                        INNER JOIN states as state\
+                        ON city.state_id = state.id\
+                        ORDER BY city.id ASC;')
+        cities = cursor.fetchall()
+
+        for city in cities:
+            print(city)
+
+        cursor.close()
+        cnx.close()
+    except Exception as e:
+        return (e)
+
 
 if __name__ == "__main__":
-    conn = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                           passwd=argv[2], db=argv[3], charset="utf8")
-    cur = conn.cursor()
-    cur.execute("SELECT cities.id, cities.name, states.name FROM cities "
-                "JOIN states ON cities.state_id = states.id "
-                "ORDER BY cities.id ASC")
-    query_rows = cur.fetchall()
-    for row in query_rows:
-        print(row)
-    cur.close()
-    conn.close()
+    connect_and_query()

@@ -1,20 +1,33 @@
 #!/usr/bin/python3
-"""List all states"""
-from sys import argv
+
+"""
+Module to perfom simple queries on the model_state model
+using and ORM - SQLAlchemy
+"""
 from model_state import Base, State
-from sqlalchemy import (create_engine)
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import sys
+
+
+def connect_and_query(user: str, passwd: str, dbase: str) -> None:
+
+    """
+    Connect to the database and make queries using ORM
+    """
+    try:
+        engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                               .format(user, passwd, dbase))
+        Session = sessionmaker(bind=engine)
+        state_session = Session()
+
+        lousiana = State(name="Louisiana")
+        state_session.add(lousiana)
+        state_session.commit()
+        print(lousiana.id)
+    except Exception as e:
+        return e
+
 
 if __name__ == "__main__":
-    engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost/{}'
-        .format(argv[1], argv[2],
-                argv[3]), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    new_state = State(name="Louisiana")
-    session.add(new_state)
-    session.commit()
-    print(new_state.id)
-    session.close()
+    connect_and_query(sys.argv[1], sys.argv[2], sys.argv[3])

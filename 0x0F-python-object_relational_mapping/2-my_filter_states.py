@@ -1,19 +1,31 @@
 #!/usr/bin/python3
-"""Lists states"""
 
-import MySQLdb
-from sys import argv
+"""
+Lists all states from the states table of database hbtn_0e_0_usa.
+Usage: ./0-select_states.py <username> \
+                            <password> \
+                             <database-name>
+"""
+import sys
+import MySQLdb as db
+
+
+def connect_and_query() -> None:
+
+    """Connect to the database and execute query"""
+    try:
+        cnx = db.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+        cursor = cnx.cursor(cursorclass=db.cursors.Cursor)
+        cursor.execute("SELECT * FROM states WHERE name = '{:s}' \
+                        ORDER BY id ASC;".format(sys.argv[4]))
+        states = cursor.fetchall()
+
+        for state in states:
+            if state[1] == sys.argv[4]:
+                print(state)
+    except Exception as e:
+        return (e)
+
 
 if __name__ == "__main__":
-    conn = MySQLdb.connect(host="localhost", port=3306, user=argv[1],
-                           passwd=argv[2], db=argv[3], charset="utf8")
-    cur = conn.cursor()
-    query = """
-SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY states.id ASC"""
-    query = query.format(argv[4])
-    cur.execute(query)
-    query_rows = cur.fetchall()
-    for row in query_rows:
-        print(row)
-    cur.close()
-    conn.close()
+    connect_and_query()
